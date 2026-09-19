@@ -1,0 +1,30 @@
+# Credentials and local settings
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+id_rsa*
+
+# Python and operating-system files
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.DS_Store
+
+# Reproducible local data and generated artifacts
+data/raw/
+data/processed/
+data/tidy/
+site/data/payload.json
+reports/
+submission/
+notebooks/.ipynb_checkpoints/
+
+# Deployment-specific and Tableau connection artifacts
+deploy/nginx-*.conf
+deploy/install_server.sh
+scripts/*tableau*.py
+scripts/extend_tableau_workbook.py
+scripts/rename_tableau_sheets.py

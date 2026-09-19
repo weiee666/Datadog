@@ -1,0 +1,10 @@
+[Unit]
+Description=Run DDOG dashboard daily refresh at 07:10 UTC
+
+[Timer]
+OnCalendar=*-*-* 23:10:00 UTC
+Persistent=true
+Unit=ddog-refresh.service
+
+[Install]
+WantedBy=timers.target

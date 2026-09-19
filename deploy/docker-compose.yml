@@ -1,0 +1,25 @@
+services:
+  mysql:
+    image: mysql:8.4
+    container_name: ddog-mysql
+    restart: unless-stopped
+    command: ["mysqld", "--mysql-native-password=ON"]
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-ddog_dashboard}
+      MYSQL_USER: ${MYSQL_USER:-ddog_app}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:?set MYSQL_PASSWORD in .env}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?set MYSQL_ROOT_PASSWORD in .env}
+    volumes:
+      - mysql_data:/var/lib/mysql
+    ports:
+      # Tableau users connect directly to the server. Restrict TCP 3306 to
+      # approved client IPs in the cloud security group.
+      - "3306:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-p$${MYSQL_ROOT_PASSWORD}"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+
+volumes:
+  mysql_data:

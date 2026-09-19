@@ -1,0 +1,11 @@
+[Unit]
+Description=Refresh DDOG dashboard data
+After=network-online.target ddog-api.service
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=ubuntu
+WorkingDirectory=/opt/ddog-dashboard
+EnvironmentFile=/opt/ddog-dashboard/.env
+ExecStart=/opt/ddog-dashboard/venv/bin/python /opt/ddog-dashboard/scripts/run_daily_refresh.py
