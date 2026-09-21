@@ -1,5 +1,5 @@
 [Unit]
-Description=Run DDOG dashboard daily refresh at 07:10 UTC
+Description=Run DDOG dashboard daily refresh at 07:10 China Standard Time
 
 [Timer]
 OnCalendar=*-*-* 23:10:00 UTC
